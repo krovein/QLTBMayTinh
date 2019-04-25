@@ -56,6 +56,7 @@ namespace QuanLyThietBiMayTinh
             txtDiaChi.Text = string.Empty;
             txtHoTenNV.Text = string.Empty;
             txtSDT.Text = string.Empty;
+            txtCmnd.Text = string.Empty;
 
 
         }
@@ -148,6 +149,7 @@ namespace QuanLyThietBiMayTinh
             txtDiaChi.Text= row["sDiaChi"].ToString();
             txtHoTenNV.Text= row["sTenNhanVien"].ToString();
             txtSDT.Text= row["sSoDienThoai"].ToString();
+            txtCmnd.Text = row["sChungMinhThu"].ToString();
 
         }
       
@@ -170,6 +172,7 @@ namespace QuanLyThietBiMayTinh
             txtDiaChi.Text = string.Empty;
             txtHoTenNV.Text = string.Empty;
             txtSDT.Text = string.Empty;
+            txtCmnd.Text = string.Empty;
 
         }
         
@@ -199,6 +202,10 @@ namespace QuanLyThietBiMayTinh
                     {
                         filter += string.Format(" AND sSoDienThoai LIKE '%{0}%'", txtSDT.Text);
                     }
+                    if (txtCmnd.Text != string.Empty)
+                    {
+                        filter += string.Format(" AND sChungMinhThu LIKE '%{0}%'", txtCmnd.Text);
+                    }
                     hienNV(filter);
                     break;
                 case "Sửa":
@@ -213,6 +220,25 @@ namespace QuanLyThietBiMayTinh
                     else gt = 0;
 
                      ngaySinh = dateNgaySinh.Value.Date;
+
+                    // kiem tra CMND có được nhập không
+                    if (txtCmnd.Text == string.Empty)
+                    {
+                        MessageBox.Show("Vui lòng nhập CMND");
+                        return;
+                    }
+                    DataTable dt2 = getAllNV();
+                    DataView dv2 = new DataView(dt2);
+                    string filter2 = "sChungMinhThu = '" + txtCmnd.Text + "' AND sMaNhanVien <> ' "+txtMaNV.Text +"'";
+                    dv2.RowFilter = filter2;
+                    //kiểm tra xem có tồn tại không
+                    if (dv2.Count > 0)
+                    {
+                        MessageBox.Show("So CMND da ton tai trong he thong!");
+                        return;
+                    }
+
+
                     NhanVienManagerForm f = new NhanVienManagerForm();
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
@@ -225,6 +251,7 @@ namespace QuanLyThietBiMayTinh
                             cmd.Parameters.AddWithValue("@dNgaySinh", ngaySinh);
                             cmd.Parameters.AddWithValue("@sDiaChi", txtDiaChi.Text);
                             cmd.Parameters.AddWithValue("@sSoDienThoai", txtSDT.Text);
+                            cmd.Parameters.AddWithValue("@sChungMinhThu", txtCmnd.Text);
                             conn.Open();
                             cmd.ExecuteNonQuery();
                             conn.Close();
@@ -243,6 +270,25 @@ namespace QuanLyThietBiMayTinh
                     else gt = 0;
 
                     ngaySinh = dateNgaySinh.Value.Date;
+                    // kiem tra CMND có được nhập không
+                    if(txtCmnd.Text== string.Empty)
+                    {
+                        MessageBox.Show("Vui lòng nhập CMND");
+                        return;
+                    }
+                    DataTable dt1 = getAllNV();
+                    DataView dv1 = new DataView(dt1);
+                    string filter1= "sChungMinhThu = '" + txtCmnd.Text + "'";
+                    dv1.RowFilter = filter1;
+                    //kiểm tra xem có tồn tại không
+                    if(dv1.Count> 0)
+                    {
+                        MessageBox.Show("So CMND da ton tai trong he thong!");
+                        return;
+                    }
+
+
+
 
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
@@ -255,6 +301,7 @@ namespace QuanLyThietBiMayTinh
                             cmd.Parameters.AddWithValue("@dNgaySinh", ngaySinh);
                             cmd.Parameters.AddWithValue("@sDiaChi", txtDiaChi.Text);
                             cmd.Parameters.AddWithValue("@sSoDienThoai", txtSDT.Text);
+                            cmd.Parameters.AddWithValue("@sChungMinhThu", txtCmnd.Text);
                             conn.Open();
                             cmd.ExecuteNonQuery();
                             conn.Close();
