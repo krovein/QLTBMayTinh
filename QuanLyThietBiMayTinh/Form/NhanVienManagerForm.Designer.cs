@@ -65,8 +65,6 @@
             this.sDiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sSoDienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sChungMinhThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbNam = new System.Windows.Forms.Label();
-            this.lbNu = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grQuanLyNhanVien)).BeginInit();
@@ -188,8 +186,6 @@
             // 
             this.panel2.Controls.Add(this.btnRefresh);
             this.panel2.Controls.Add(this.grQuanLyNhanVien);
-            this.panel2.Controls.Add(this.lbNam);
-            this.panel2.Controls.Add(this.lbNu);
             this.panel2.Location = new System.Drawing.Point(148, 68);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
@@ -223,7 +219,7 @@
             this.grQuanLyNhanVien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grQuanLyNhanVien.Name = "grQuanLyNhanVien";
             this.grQuanLyNhanVien.RowTemplate.Height = 24;
-            this.grQuanLyNhanVien.Size = new System.Drawing.Size(784, 239);
+            this.grQuanLyNhanVien.Size = new System.Drawing.Size(784, 276);
             this.grQuanLyNhanVien.TabIndex = 0;
             // 
             // label1
@@ -490,26 +486,6 @@
             this.sChungMinhThu.HeaderText = "CMND";
             this.sChungMinhThu.Name = "sChungMinhThu";
             // 
-            // lbNam
-            // 
-            this.lbNam.AutoSize = true;
-            this.lbNam.Location = new System.Drawing.Point(2, 255);
-            this.lbNam.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbNam.Name = "lbNam";
-            this.lbNam.Size = new System.Drawing.Size(66, 13);
-            this.lbNam.TabIndex = 1;
-            this.lbNam.Text = "Số NV Nam:";
-            // 
-            // lbNu
-            // 
-            this.lbNu.AutoSize = true;
-            this.lbNu.Location = new System.Drawing.Point(204, 255);
-            this.lbNu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbNu.Name = "lbNu";
-            this.lbNu.Size = new System.Drawing.Size(58, 13);
-            this.lbNu.TabIndex = 1;
-            this.lbNu.Text = "Số NV Nữ:";
-            // 
             // NhanVienManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,7 +504,6 @@
             this.Load += new System.EventHandler(this.NhanVienManagerForm_Load);
             this.panel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grQuanLyNhanVien)).EndInit();
             this.pnChucNang.ResumeLayout(false);
             this.pnChucNang.PerformLayout();
@@ -578,7 +553,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sDiaChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn sSoDienThoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn sChungMinhThu;
-        private System.Windows.Forms.Label lbNu;
-        private System.Windows.Forms.Label lbNam;
     }
 }

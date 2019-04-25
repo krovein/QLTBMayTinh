@@ -86,25 +86,6 @@ namespace QuanLyThietBiMayTinh
             grQuanLyNhanVien.AutoGenerateColumns = false;
             grQuanLyNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grQuanLyNhanVien.DataSource = dt;
-            string query = "select count (1) from tblNhanVien where bGioiTinh=1";
-            int sonam = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.CommandType = System.Data.CommandType.Text;                   
-                    conn.Open();
-                    sonam = (int) cmd.ExecuteScalar();
-                    conn.Close();
-
-                }
-            }
-            DataView dv = new DataView(dt);
-            int sonu = dv.Count - sonam;
-
-            lbNam.Text = "Số NV Nam: " + sonam;
-            lbNu.Text = "Số NV Nữ: " + sonu;
-
         }
 
         private void NhanVienManagerForm_Load(object sender, EventArgs e)
