@@ -49,15 +49,11 @@
             this.btnNhaCungCap = new System.Windows.Forms.Button();
             this.btnNhanVien = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnBaoCao = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.btnBaoCao);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
@@ -271,26 +267,6 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "HỆ THỐNG QUẢN LÝ";
             // 
-            // btnBaoCao
-            // 
-            this.btnBaoCao.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBaoCao.BackgroundImage")));
-            this.btnBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBaoCao.Location = new System.Drawing.Point(985, 237);
-            this.btnBaoCao.Name = "btnBaoCao";
-            this.btnBaoCao.Size = new System.Drawing.Size(150, 150);
-            this.btnBaoCao.TabIndex = 18;
-            this.btnBaoCao.UseVisualStyleBackColor = true;
-            this.btnBaoCao.Click += new System.EventHandler(this.btnBaoCao_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1028, 390);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 17);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Báo cáo";
-            // 
             // ManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,8 +307,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnBaoCao;
     }
 }
 

@@ -132,16 +132,5 @@ namespace QuanLyThietBiMayTinh
             form.Show();
             form.Activate();
         }
-
-        private void btnBaoCao_Click(object sender, EventArgs e)
-        {
-            Form form = searchOpenedForm("BaoCao");
-            if (form == null)
-            {
-                form = new BaoCao();
-            }
-            form.Show();
-            form.Activate();
-        }
     }
 }
