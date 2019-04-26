@@ -41,7 +41,7 @@ namespace QuanLyThietBiMayTinh
 
         private void btnAddNV_Click(object sender, EventArgs e)
         {
-            
+
             pnChucNang.Visible = true;
             btnOK.Text = "Thêm";
             lbTitle.Text = "Thêm nhân viên";
@@ -79,7 +79,7 @@ namespace QuanLyThietBiMayTinh
             }
         }
 
-        public void showAllNhanVien ()
+        public void showAllNhanVien()
         {
             DataTable dt = getAllNV();
             grQuanLyNhanVien.AutoGenerateColumns = false;
@@ -93,7 +93,7 @@ namespace QuanLyThietBiMayTinh
             pnChucNang.Visible = false;
         }
 
-    
+
 
         private void btnDeleteNV_Click(object sender, EventArgs e)
         {
@@ -125,9 +125,8 @@ namespace QuanLyThietBiMayTinh
                 }
                 showAllNhanVien();
             }
-            
-        }
 
+        }
         private void btnEditNV_Click(object sender, EventArgs e)
         {
 
@@ -145,14 +144,21 @@ namespace QuanLyThietBiMayTinh
             DataTable dtNhanVien = (DataTable)grQuanLyNhanVien.DataSource;
             DataRow row = dtNhanVien.Rows[grQuanLyNhanVien.CurrentRow.Index];
             txtMaNV.Text = row["sMaNhanVien"].ToString();
-            txtDiaChi.Text= row["sDiaChi"].ToString();
-            txtHoTenNV.Text= row["sTenNhanVien"].ToString();
-            txtSDT.Text= row["sSoDienThoai"].ToString();
-
+            txtDiaChi.Text = row["sDiaChi"].ToString();
+            txtHoTenNV.Text = row["sTenNhanVien"].ToString();
+            txtSDT.Text = row["sSoDienThoai"].ToString();
+            if (row["bGioiTinh"].ToString() != string.Empty && row["bGioiTinh"].ToString().Equals("Nam"))
+            {
+                rbNam.Checked = true;
+            }
+            else
+            {
+                rbNu.Checked = true;
+            }
         }
-      
-        
-    
+
+
+
         private void btnSearchNV_Click(object sender, EventArgs e)
         {
 
@@ -164,7 +170,7 @@ namespace QuanLyThietBiMayTinh
             pnGT.Enabled = false;
             txtMaNV.Enabled = true;
             lbTitle.Text = "Tìm kiếm";
-            btnOK.Text= "Tìm kiếm";
+            btnOK.Text = "Tìm kiếm";
 
             txtMaNV.Text = string.Empty;
             txtDiaChi.Text = string.Empty;
@@ -172,7 +178,7 @@ namespace QuanLyThietBiMayTinh
             txtSDT.Text = string.Empty;
 
         }
-        
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             int gt = 0;
@@ -205,14 +211,14 @@ namespace QuanLyThietBiMayTinh
                     DataTable dtNhanVien = (DataTable)grQuanLyNhanVien.DataSource;
                     DataRow row = dtNhanVien.Rows[grQuanLyNhanVien.CurrentRow.Index];
                     string manv = row["sMaNhanVien"].ToString();
-       
+
                     if (rbNam.Checked == true)
                     {
                         gt = 1;
                     }
                     else gt = 0;
 
-                     ngaySinh = dateNgaySinh.Value.Date;
+                    ngaySinh = dateNgaySinh.Value.Date;
                     NhanVienManagerForm f = new NhanVienManagerForm();
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
@@ -235,7 +241,7 @@ namespace QuanLyThietBiMayTinh
                     showAllNhanVien();
                     break;
 
-                case "Thêm":       
+                case "Thêm":
                     if (rbNam.Checked == true)
                     {
                         gt = 1;
@@ -243,6 +249,26 @@ namespace QuanLyThietBiMayTinh
                     else gt = 0;
 
                     ngaySinh = dateNgaySinh.Value.Date;
+
+
+                    // kiem tra Mã nhân viên có được nhập không
+                    if (txtMaNV.Text == string.Empty)
+                    {
+                        MessageBox.Show("Vui lòng nhập CMND");
+                        return;
+                    }
+                    DataTable dt = getAllNV();
+                    DataView dv = new DataView(dt);
+                    string filter1 = "sMaNhanVien = '" + txtMaNV.Text + "'";
+                    dv.RowFilter = filter1;
+                    //kiểm tra xem có tồn tại không
+                    if (dv.Count > 0)
+                    {
+                        MessageBox.Show("Mã Nhân viên bạn vừa nhập đã tồn tại trong hệ thống!");
+                        return;
+                    }
+
+
 
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
@@ -267,7 +293,7 @@ namespace QuanLyThietBiMayTinh
         }
         private void hienNV(string filter)
         {
-           
+
             DataTable dt = getAllNV();
             DataView dv = new DataView(dt);
             dv.RowFilter = filter;
